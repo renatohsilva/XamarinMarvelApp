@@ -1,0 +1,37 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="MarvelApp.Views.HeroiView"
+             Title="{Binding Personagem.Name}">
+    <ContentPage.Content>
+        <Grid BackgroundColor="#F44336">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="320"></RowDefinition>
+                <RowDefinition Height="*"></RowDefinition>
+                <RowDefinition Height="Auto"></RowDefinition>
+            </Grid.RowDefinitions>
+
+            <Image Source="{Binding Personagem.Image}" 
+                   Grid.Row="0" 
+                   HorizontalOptions="FillAndExpand" 
+                   VerticalOptions="FillAndExpand" 
+                   Aspect="Fill"/>
+
+
+            <ContentView Grid.Row="1" Padding="5,5,5,5">
+                <Label Text="{Binding Personagem.Description}" 
+                       HorizontalOptions="FillAndExpand" 
+                       VerticalOptions="FillAndExpand" 
+                       FontSize="13"
+                       TextColor="#FFFFFF"/>
+            </ContentView>
+
+            <StackLayout Padding="10" Grid.Row="2">
+                <Button Text="Abrir Web" 
+                        TextColor="White" 
+                        Command="{Binding OpenWeb}"/>
+            </StackLayout>
+
+        </Grid>
+    </ContentPage.Content>
+</ContentPage>

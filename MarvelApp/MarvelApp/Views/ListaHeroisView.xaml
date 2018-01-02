@@ -1,0 +1,53 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="MarvelApp.Views.ListaHeroisView"
+             xmlns:controls="clr-namespace:MarvelApp.Controls"
+             xmlns:b="clr-namespace:MarvelApp.Behaviors">
+    Title="Herois">
+
+    <StackLayout>
+        <Button VerticalOptions="Start"
+                Text="Carregar"
+                Command="{Binding BuscarHeroisCommand}"/>
+        
+        <ListView HorizontalOptions="FillAndExpand"                           
+                  VerticalOptions="FillAndExpand"
+                  HasUnevenRows="True"
+                  ItemsSource="{Binding Personagens}"
+                  SelectedItem="{Binding HeroiSelecionado, Mode=TwoWay}"
+                  controls:ItemTappedAttached.Command="{Binding NavigationCommand}">
+            <ListView.Behaviors>
+                <b:InfiniteScroll LoadMoreCommand="{Binding LoadMoreCommand}" />
+            </ListView.Behaviors>
+            <ListView.ItemTemplate>
+                <DataTemplate>
+                    <ViewCell>
+                        <Frame>
+                            <StackLayout>
+                                <Image Source="{Binding Image}"                                                                                  
+                                       HorizontalOptions="Fill"
+                                       VerticalOptions="Fill"
+                                       Aspect="AspectFill"/>
+                                <StackLayout>
+                                    <Label Text="{Binding Name}" 
+                                           HorizontalOptions="FillAndExpand" 
+                                           VerticalOptions="FillAndExpand" 
+                                           VerticalTextAlignment="Center" 
+                                           HorizontalTextAlignment="Center" 
+                                           Style="{DynamicResource NameStyle}"/>
+                                </StackLayout>
+                            </StackLayout>
+                        </Frame>
+                    </ViewCell>
+                </DataTemplate>
+            </ListView.ItemTemplate>
+        </ListView>
+
+        <ActivityIndicator VerticalOptions="End"
+                           IsVisible="{Binding IsBusy}" 
+                           IsRunning="{Binding IsBusy}"
+                           HorizontalOptions="Center" 
+                           BackgroundColor="Transparent" />
+    </StackLayout>
+</ContentPage>

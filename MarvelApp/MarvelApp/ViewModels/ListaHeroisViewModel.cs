@@ -7,6 +7,7 @@ using MarvelApp.Views;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Xamarin.Forms;
@@ -15,23 +16,36 @@ namespace MarvelApp.ViewModels
 {
     public class ListaHeroisViewModel : AbstractViewModel
     {
-        public Command BuscarHeroisCommand { get; set; }
-        public Command LoadMoreCommand { get; set; }
-
-        public Command NavigationCommand { get; set; }
+        private List<Personagens> PersonagensInicial;
 
         private MarvelClient marvelClient;
 
-        private ObservableCollection<Personagens> personagens;
+        private string _filter;
+        public string Filter
+        {
+            get
+            {
+                return _filter;
+            }
+            set
+            {
+                _filter = value;
+                OnPropertyChanged();
+
+                this.FilterHeroes();
+            }
+        }
+
+        private ObservableCollection<Personagens> _personagens;
         public ObservableCollection<Personagens> Personagens
         {
             get
             {
-                return personagens;
+                return _personagens;
             }
             set
             {
-                personagens = value;
+                _personagens = value;
                 OnPropertyChanged();
             }
         }
@@ -50,19 +64,15 @@ namespace MarvelApp.ViewModels
             }
         }
 
-        public ListaHeroisViewModel(IUserDialogs dialogs) : base(dialogs)
-        {
-            marvelClient = new MarvelClient();
+        public Command LoadMoreCommand { get; set; }
+        public Command NavigationCommand { get; set; }
 
-            Personagens = new ObservableCollection<Personagens>();
-            BuscarHeroisCommand = new Command(async () =>
-            {
-                using (Dialogs.Loading("Carregando"))
-                {
-                    var result = await marvelClient.GetPersonagens();
-                    Personagens = new ObservableCollection<Personagens>(result.Results);
-                }
-            });
+        public ListaHeroisViewModel(IUserDialogs dialogs, ObservableCollection<Personagens> personagens) : base(dialogs)
+        {
+            PersonagensInicial = new List<Personagens>(personagens);
+            Personagens = personagens;
+
+            marvelClient = new MarvelClient();
 
             int offset = 30;
             LoadMoreCommand = new Command(async () =>
@@ -87,6 +97,23 @@ namespace MarvelApp.ViewModels
                     await NavHelper.PushModalAsync(new HeroiView(HeroiSelecionado));
                 }
             });
+        }
+
+
+        private void FilterHeroes()
+        {
+            if (String.IsNullOrEmpty(_filter))
+            {
+                Personagens = new ObservableCollection<Personagens>(PersonagensInicial);
+            }
+            else
+            {
+                var personagensList = new List<Personagens>(Personagens);
+                var personagensFiltrados = personagensList?.Where(x => x.Name.ToLower().Contains(_filter.ToLower())).ToList();
+
+                if (personagensFiltrados.Any())
+                    Personagens = new ObservableCollection<Personagens>(personagensFiltrados);
+            }
         }
     }
 }

@@ -10,32 +10,44 @@ namespace MarvelApp.Models
 {
     public class ImageUrl : ObservableObject
     {
-        private string extension;
+        public ImageUrl(string extension, string path)
+        {
+            Extension = extension;
+            Path = path;
+        }
+
+        public ImageUrl()
+        {
+
+        }
+
+
+        private string _extension;
         [JsonProperty("extension")]
         public string Extension
         {
             get
             {
-                return extension;
+                return _extension;
             }
             private set
             {
-                extension = value;
+                _extension = value;
                 OnPropertyChanged();
             }
         }
 
-        private string path;
+        private string _path;
         [JsonProperty("path")]
         public string Path
         {
             get
             {
-                return path;
+                return _path;
             }
             private set
             {
-                path = value;
+                _path = value;
                 OnPropertyChanged();
             }
         }

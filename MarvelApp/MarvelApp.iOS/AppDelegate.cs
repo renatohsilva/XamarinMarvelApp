@@ -1,4 +1,6 @@
 ﻿
+using FFImageLoading;
+using FFImageLoading.Forms.Touch;
 using Foundation;
 using UIKit;
 using Xamarin.Forms;
@@ -21,7 +23,10 @@ namespace MarvelApp.iOS
 		public override bool FinishedLaunching(UIApplication app, NSDictionary options)
 		{
 			global::Xamarin.Forms.Forms.Init ();
-			LoadApplication (new MarvelApp.App ());
+
+            CachedImageRenderer.Init();
+
+            LoadApplication (new MarvelApp.App ());
 
             return base.FinishedLaunching (app, options);
 		}

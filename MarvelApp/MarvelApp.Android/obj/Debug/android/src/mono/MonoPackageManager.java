@@ -111,6 +111,10 @@ class MonoPackageManager_Resources {
 		"Acr.UserDialogs.dll",
 		"Acr.UserDialogs.Interface.dll",
 		"AndHUD.dll",
+		"FFImageLoading.dll",
+		"FFImageLoading.Forms.dll",
+		"FFImageLoading.Forms.Droid.dll",
+		"FFImageLoading.Platform.dll",
 		"FormsViewGroup.dll",
 		"Newtonsoft.Json.dll",
 		"Plugin.Settings.Abstractions.dll",
@@ -136,6 +140,7 @@ class MonoPackageManager_Resources {
 		"Xamarin.Forms.Platform.Android.dll",
 		"Xamarin.Forms.Platform.dll",
 		"Xamarin.Forms.Xaml.dll",
+		"Xamarin.Android.Support.Exif.dll",
 	};
 	public static final String[] Dependencies = new String[]{
 	};

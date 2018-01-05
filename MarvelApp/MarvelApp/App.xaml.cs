@@ -14,7 +14,7 @@ namespace MarvelApp
 		{
 			InitializeComponent();
 
-			MainPage = new ListaHeroisView();
+			MainPage = new TelaInicialView();
 		}
 
 		protected override void OnStart ()

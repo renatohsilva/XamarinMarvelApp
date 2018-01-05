@@ -49,7 +49,7 @@ namespace MarvelApp.ViewModels
 
         private void ExecuteOpenWebCommand()
         {
-            _openWebService.OpenUrl(Personagem.Image);
+            _openWebService.OpenUrl(Personagem.Thumbnail.ToString());
         }
 
         private bool ValidateOpenWebCommand()

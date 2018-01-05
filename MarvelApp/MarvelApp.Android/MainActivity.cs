@@ -3,6 +3,7 @@ using Android.App;
 using Android.Content.PM;
 using Android.OS;
 using Acr.UserDialogs;
+using FFImageLoading.Forms.Droid;
 
 namespace MarvelApp.Droid
 {
@@ -18,6 +19,7 @@ namespace MarvelApp.Droid
 
             global::Xamarin.Forms.Forms.Init(this, bundle);
 
+            CachedImageRenderer.Init(true);
             UserDialogs.Init(this);
 
             LoadApplication(new MarvelApp.App());

@@ -2,7 +2,14 @@
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="MarvelApp.Views.HeroiView"
+             xmlns:converter="clr-namespace:MarvelApp.Converter"
+             xmlns:ffimageloading="clr-namespace:FFImageLoading.Forms;assembly=FFImageLoading.Forms"
              Title="{Binding Personagem.Name}">
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <converter:ImageToStringConverter x:Key="imageConverter" />
+        </ResourceDictionary>
+    </ContentPage.Resources>
     <ContentPage.Content>
         <Grid BackgroundColor="#F44336">
             <Grid.RowDefinitions>
@@ -11,11 +18,11 @@
                 <RowDefinition Height="Auto"></RowDefinition>
             </Grid.RowDefinitions>
 
-            <Image Source="{Binding Personagem.Image}" 
-                   Grid.Row="0" 
-                   HorizontalOptions="FillAndExpand" 
-                   VerticalOptions="FillAndExpand" 
-                   Aspect="Fill"/>
+            <ffimageloading:CachedImage Grid.Row="0" 
+                                        HorizontalOptions="FillAndExpand" 
+                                        VerticalOptions="FillAndExpand" 
+                                        Source="{Binding Personagem.Thumbnail,
+                                                         Converter={StaticResource imageConverter}}" />
 
 
             <ContentView Grid.Row="1" Padding="5,5,5,5">

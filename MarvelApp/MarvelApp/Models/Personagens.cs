@@ -22,7 +22,7 @@ namespace MarvelApp.Models
 
         private string name;
         [JsonProperty("name")]
-        public string Name 
+        public string Name
         {
             get
             {
@@ -37,7 +37,7 @@ namespace MarvelApp.Models
 
         private string description;
         [JsonProperty("description")]
-        public string Description 
+        public string Description
         {
             get
             {
@@ -64,14 +64,5 @@ namespace MarvelApp.Models
                 OnPropertyChanged();
             }
         }
-
-        public string Image
-        {
-            get
-            {
-                return Thumbnail == null ? "" : Thumbnail.ToString();
-            }
-        }
-
     }
 }

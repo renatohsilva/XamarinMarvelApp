@@ -250,3 +250,4 @@ C:\Git\Mobile\XamarinMarvelApp\MarvelApp\MarvelApp.Android\bin\Debug\FFImageLoad
 C:\Git\Mobile\XamarinMarvelApp\MarvelApp\MarvelApp.Android\bin\Debug\FFImageLoading.Platform.xml
 C:\Git\Mobile\XamarinMarvelApp\MarvelApp\MarvelApp.Android\obj\Debug\XbdMerge\Xamarin.Android.Support.Exif.dll
 C:\Git\Mobile\XamarinMarvelApp\MarvelApp\MarvelApp.Android\obj\Debug\MarvelApp.Droid.Views.TelaInicialView.xaml.g.cs
+C:\Git\Mobile\XamarinMarvelApp\MarvelApp\MarvelApp.Android\obj\Debug\res\drawable\marvel.jpeg

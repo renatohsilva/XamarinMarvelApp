@@ -14,10 +14,24 @@ namespace MarvelApp.Service
         private String BaseUrl = @"https://gateway.marvel.com/v1/public/";
         private Configuracoes Configuracao;
 
-        public MarvelClient()
+        #region Singleton
+
+        private MarvelClient()
         {
             Configuracao = Configuracoes.Instance;
         }
+
+        private static readonly Lazy<MarvelClient> lazy = new Lazy<MarvelClient>(() => new MarvelClient());
+
+        public static MarvelClient Instance
+        {
+            get
+            {
+                return lazy.Value;
+            }
+        }
+
+        #endregion
 
         #region Get Characteres
 

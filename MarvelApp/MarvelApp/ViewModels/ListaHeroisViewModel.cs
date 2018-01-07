@@ -1,119 +1,164 @@
 ﻿using Acr.UserDialogs;
-using MarvelApp.Helper;
 using MarvelApp.Models;
 using MarvelApp.Service;
 using MarvelApp.ViewModels.Base;
-using MarvelApp.Views;
+using MarvelApp.ViewModels.Services;
 using System;
-using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
 using Xamarin.Forms;
+using Xamarin.Forms.Internals;
 
 namespace MarvelApp.ViewModels
 {
     public class ListaHeroisViewModel : AbstractViewModel
     {
-        private List<Personagens> PersonagensInicial;
+        public Command LoadMoreCommand { get; set; }
+        public Command SearchCommand { get; set; }
+        public Command NavigationCommand { get; set; }
+
+        private Command InicializarHerois { get; set; }
+
+        private ObservableCollection<Personagens> heroes;
+        public ObservableCollection<Personagens> Heroes
+        {
+            get
+            {
+                return heroes;
+            }
+            set
+            {
+                heroes = value;
+                OnPropertyChanged();
+            }
+        }
+
+        private Personagens selectedHero;
+        public Personagens SelectedHero
+        {
+            get
+            {
+                return selectedHero;
+            }
+            set
+            {
+                selectedHero = value;
+                OnPropertyChanged();
+            }
+        }
+
+        private String searchText;
+        public String SearchText
+        {
+            get
+            {
+                return searchText;
+            }
+            set
+            {
+                searchText = value;
+                OnPropertyChanged();
+
+                if (String.IsNullOrEmpty(searchText))
+                {
+                    InicializarHerois?.Execute(null);
+                }
+            }
+        }
+
+        private Boolean thereIsResultList;
+        public Boolean ThereIsResultList
+        {
+            get
+            {
+                return thereIsResultList;
+            }
+            set
+            {
+                thereIsResultList = value;
+                OnPropertyChanged();
+            }
+        }
 
         private MarvelClient marvelClient;
 
-        private string _filter;
-        public string Filter
+        private readonly INavigationService navigationService;
+
+        public ListaHeroisViewModel(IUserDialogs dialogs) : base(dialogs)
         {
-            get
+            marvelClient = MarvelClient.Instance;
+            navigationService = DependencyService.Get<INavigationService>();
+
+            InicializarHerois = new Command(async () =>
             {
-                return _filter;
-            }
-            set
+                using (Dialogs.Loading("Carregando"))
+                {
+                    Heroes = await FiltrarPersonagens();
+                }
+            });
+
+            SearchCommand = new Command(async () =>
             {
-                _filter = value;
-                OnPropertyChanged();
+                using (Dialogs.Loading("Carregando"))
+                {
+                    Heroes = await FiltrarPersonagens(SearchText);
+                }
+            });
 
-                this.FilterHeroes();
-            }
-        }
-
-        private ObservableCollection<Personagens> _personagens;
-        public ObservableCollection<Personagens> Personagens
-        {
-            get
-            {
-                return _personagens;
-            }
-            set
-            {
-                _personagens = value;
-                OnPropertyChanged();
-            }
-        }
-
-        private Personagens heroiselecionado;
-        public Personagens HeroiSelecionado
-        {
-            get
-            {
-                return heroiselecionado;
-            }
-            set
-            {
-                heroiselecionado = value;
-                OnPropertyChanged();
-            }
-        }
-
-        public Command LoadMoreCommand { get; set; }
-        public Command NavigationCommand { get; set; }
-
-        public ListaHeroisViewModel(IUserDialogs dialogs, ObservableCollection<Personagens> personagens) : base(dialogs)
-        {
-            PersonagensInicial = new List<Personagens>(personagens);
-            Personagens = personagens;
-
-            marvelClient = new MarvelClient();
-
-            int offset = 30;
+            int offSetSearch = 30;
             LoadMoreCommand = new Command(async () =>
             {
                 IsBusy = true;
 
-                var result = await marvelClient.GetPersonagens(null, 30, offset);
-                offset += 30;
+                var result = await FiltrarPersonagens(SearchText, 30, offSetSearch);
+                offSetSearch += 30;
 
-                foreach (var item in result.Results)
+                if (result.Any())
                 {
-                    Personagens.Add(item);
+                    ThereIsResultList = true;
+                    result.ForEach(personagem => Heroes.Add(personagem));
+                }
+                else
+                {
+                    ThereIsResultList = false;
                 }
 
                 IsBusy = false;
-            });
 
-            NavigationCommand = new Command(async () =>
-            {
-                if (heroiselecionado != null)
-                {
-                    await NavHelper.PushModalAsync(new HeroiView(HeroiSelecionado));
-                }
-            });
+            }, CanExecute());
+
+            NavigationCommand = new Command(async () => await navigationService.NavigateToHeroDetail(SelectedHero), CanNavigate());
+
+            InicializarHerois.Execute(null);
         }
 
-
-        private void FilterHeroes()
+        private async Task<ObservableCollection<Personagens>> FiltrarPersonagens(String filtro = null, int limit = 30, int offset = 0)
         {
-            if (String.IsNullOrEmpty(_filter))
+            var heroes = new ObservableCollection<Personagens>();
+            var result = await marvelClient.GetPersonagens(filtro, limit, offset);
+
+            if (result.Results.Any())
             {
-                Personagens = new ObservableCollection<Personagens>(PersonagensInicial);
+                ThereIsResultList = true;
+                heroes = new ObservableCollection<Personagens>(result.Results);
             }
             else
             {
-                var personagensList = new List<Personagens>(Personagens);
-                var personagensFiltrados = personagensList?.Where(x => x.Name.ToLower().Contains(_filter.ToLower())).ToList();
-
-                if (personagensFiltrados.Any())
-                    Personagens = new ObservableCollection<Personagens>(personagensFiltrados);
+                ThereIsResultList = false;
             }
+
+            return heroes;
+        }
+
+        private Func<bool> CanExecute()
+        {
+            return new Func<bool>(() => ThereIsResultList);
+        }
+
+        private Func<bool> CanNavigate()
+        {
+            return new Func<bool>(() => SelectedHero != null);
         }
     }
 }

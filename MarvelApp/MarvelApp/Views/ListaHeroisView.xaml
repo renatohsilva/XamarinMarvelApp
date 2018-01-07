@@ -13,13 +13,16 @@
         </ResourceDictionary>
     </ContentPage.Resources>
     <StackLayout>
-        <SearchBar Placeholder="Pesquisar" Text="{Binding Filter}" HeightRequest="50"/>
+        <SearchBar Placeholder="Pesquisar" 
+                   HeightRequest="50"
+                   Text="{Binding SearchText, Mode=TwoWay}"
+                   SearchCommand="{Binding SearchCommand}"/>
 
         <ListView HorizontalOptions="FillAndExpand"                           
                   VerticalOptions="FillAndExpand"
                   HasUnevenRows="True"
-                  ItemsSource="{Binding Personagens}"
-                  SelectedItem="{Binding HeroiSelecionado, Mode=TwoWay}"
+                  ItemsSource="{Binding Heroes}"
+                  SelectedItem="{Binding SelectedHero, Mode=TwoWay}"
                   controls:ItemTappedAttached.Command="{Binding NavigationCommand}">
             <ListView.Behaviors>
                 <behavior:InfiniteScroll LoadMoreCommand="{Binding LoadMoreCommand}" />

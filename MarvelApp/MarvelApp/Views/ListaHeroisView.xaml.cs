@@ -13,13 +13,13 @@ using Xamarin.Forms.Xaml;
 
 namespace MarvelApp.Views
 {
-	[XamlCompilation(XamlCompilationOptions.Compile)]
-	public partial class ListaHeroisView : ContentPage
-	{
-		public ListaHeroisView (ObservableCollection<Personagens> Personagens)
-		{
-			InitializeComponent ();
-            BindingContext = new ListaHeroisViewModel(UserDialogs.Instance, Personagens);
+    [XamlCompilation(XamlCompilationOptions.Compile)]
+    public partial class ListaHeroisView : ContentPage
+    {
+        public ListaHeroisView()
+        {
+            InitializeComponent();
+            BindingContext = new ListaHeroisViewModel(UserDialogs.Instance);
         }
-	}
+    }
 }

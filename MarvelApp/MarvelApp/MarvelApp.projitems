@@ -17,7 +17,7 @@
     <Compile Include="$(MSBuildThisFileDirectory)Controls\ItemTappedAttached.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Helper\Configuracoes.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Converter\ImageToStringConverter.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)Helper\NavHelper.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Helper\NavigationHelper.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Helper\Util.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Helper\ObservableObject.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Models\Personagens.cs" />
@@ -29,6 +29,7 @@
     <Compile Include="$(MSBuildThisFileDirectory)ViewModels\Base\AbstractViewModel.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)ViewModels\HeroiViewModel.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)ViewModels\ListaHeroisViewModel.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)ViewModels\Services\INavigationService.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)ViewModels\TelaInicialViewModel.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Views\HeroiView.xaml.cs">
       <DependentUpon>HeroiView.xaml</DependentUpon>
@@ -38,6 +39,7 @@
       <DependentUpon>ListaHeroisView.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="$(MSBuildThisFileDirectory)Views\Services\NavigationService.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Views\TelaInicialView.xaml.cs">
       <DependentUpon>TelaInicialView.xaml</DependentUpon>
       <SubType>Code</SubType>

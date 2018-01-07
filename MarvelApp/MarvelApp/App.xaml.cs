@@ -14,7 +14,8 @@ namespace MarvelApp
 		{
 			InitializeComponent();
 
-			MainPage = new TelaInicialView();
+            DependencyService.Register<ViewModels.Services.INavigationService, Views.Services.NavigationService>();
+            MainPage = new TelaInicialView();
 		}
 
 		protected override void OnStart ()

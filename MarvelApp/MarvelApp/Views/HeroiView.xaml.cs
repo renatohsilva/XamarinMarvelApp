@@ -15,10 +15,10 @@ namespace MarvelApp.Views
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class HeroiView : ContentPage
     {
-        public HeroiView(Personagens personagem)
+        public HeroiView(Personagens hero)
         {
             InitializeComponent();
-            BindingContext = new HeroiViewModel(UserDialogs.Instance, personagem);
+            BindingContext = new HeroiViewModel(UserDialogs.Instance, hero);
         }
     }
 }

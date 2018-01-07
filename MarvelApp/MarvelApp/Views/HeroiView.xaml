@@ -21,12 +21,12 @@
             <ffimageloading:CachedImage Grid.Row="0" 
                                         HorizontalOptions="FillAndExpand" 
                                         VerticalOptions="FillAndExpand" 
-                                        Source="{Binding Personagem.Thumbnail,
+                                        Source="{Binding Hero.Thumbnail,
                                                          Converter={StaticResource imageConverter}}" />
 
 
             <ContentView Grid.Row="1" Padding="5,5,5,5">
-                <Label Text="{Binding Personagem.Description}" 
+                <Label Text="{Binding Hero.Description}" 
                        HorizontalOptions="FillAndExpand" 
                        VerticalOptions="FillAndExpand" 
                        FontSize="13"

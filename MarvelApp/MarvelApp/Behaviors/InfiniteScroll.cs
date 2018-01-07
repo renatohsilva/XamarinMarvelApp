@@ -59,7 +59,10 @@ namespace MarvelApp.Behaviors
             var items = AssociatedObject.ItemsSource as IList;
             if (items != null && e.Item == items[items.Count - 1])
             {
-                if (LoadMoreCommand != null && LoadMoreCommand.CanExecute(null)) LoadMoreCommand.Execute(null);
+                if (LoadMoreCommand != null && LoadMoreCommand.CanExecute(null))
+                {
+                    LoadMoreCommand.Execute(null);
+                }
             }
         }
     }

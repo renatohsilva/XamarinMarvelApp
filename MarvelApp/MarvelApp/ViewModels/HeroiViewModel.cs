@@ -14,24 +14,24 @@ namespace MarvelApp.ViewModels
     {
         private readonly IOpenWebService _openWebService;
 
-        private Personagens _Personagem;
+        private Personagens _hero;
 
-        public Personagens Personagem
+        public Personagens Hero
         {
             get
             {
-                return _Personagem;
+                return _hero;
             }
             set
             {
-                _Personagem = value;
+                _hero = value;
                 OnPropertyChanged();
             }
         }
 
         public HeroiViewModel(IUserDialogs dialogs, Personagens personagem) : base(dialogs)
         {
-            Personagem = personagem;
+            Hero = personagem;
             _openWebService = DependencyService.Get<IOpenWebService>();
         }
 
@@ -49,7 +49,7 @@ namespace MarvelApp.ViewModels
 
         private void ExecuteOpenWebCommand()
         {
-            _openWebService.OpenUrl(Personagem.Thumbnail.ToString());
+            _openWebService.OpenUrl(Hero.Thumbnail.ToString());
         }
 
         private bool ValidateOpenWebCommand()

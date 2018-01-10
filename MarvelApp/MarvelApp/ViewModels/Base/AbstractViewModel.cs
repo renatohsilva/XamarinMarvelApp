@@ -15,7 +15,7 @@ namespace MarvelApp.ViewModels.Base
     {
         private bool _IsBusy;
 
-        public bool IsBusy
+        public virtual bool IsBusy
         {
             get
             {

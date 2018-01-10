@@ -5,13 +5,13 @@
              BackgroundImage="Marvel.jpeg">
     <ContentPage.Content>
         <StackLayout>
-            <Button Text="Carregar Heróis"
+            <Button Text="Carregar"
                     BackgroundColor="White" 
                     TextColor="#d34836" 
                     Margin="20, 0, 20, 40" 
                     VerticalOptions="EndAndExpand"
                     HorizontalOptions="Center"
-                    Command="{Binding BuscarHeroisCommand}"/>
+                    Command="{Binding BuscarPersonagensCommand}"/>
         </StackLayout>
     </ContentPage.Content>
 </ContentPage>

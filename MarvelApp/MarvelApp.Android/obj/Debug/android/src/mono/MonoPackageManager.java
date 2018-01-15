@@ -126,6 +126,7 @@ class MonoPackageManager_Resources {
 		"Xamarin.Android.Support.Core.UI.dll",
 		"Xamarin.Android.Support.Core.Utils.dll",
 		"Xamarin.Android.Support.Design.dll",
+		"Xamarin.Android.Support.Exif.dll",
 		"Xamarin.Android.Support.Fragment.dll",
 		"Xamarin.Android.Support.Media.Compat.dll",
 		"Xamarin.Android.Support.Transition.dll",
@@ -140,7 +141,6 @@ class MonoPackageManager_Resources {
 		"Xamarin.Forms.Platform.Android.dll",
 		"Xamarin.Forms.Platform.dll",
 		"Xamarin.Forms.Xaml.dll",
-		"Xamarin.Android.Support.Exif.dll",
 	};
 	public static final String[] Dependencies = new String[]{
 	};

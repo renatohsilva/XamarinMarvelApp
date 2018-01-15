@@ -11,7 +11,7 @@
         </ResourceDictionary>
     </ContentPage.Resources>
     <ContentPage.Content>
-        <Grid BackgroundColor="#F44336">
+        <Grid BackgroundColor="White">
             <Grid.RowDefinitions>
                 <RowDefinition Height="320"></RowDefinition>
                 <RowDefinition Height="*"></RowDefinition>
@@ -25,17 +25,19 @@
                                                          Converter={StaticResource imageConverter}}" />
 
 
-            <ContentView Grid.Row="1" Padding="5,5,5,5">
+            <ContentView Grid.Row="1" 
+                         Padding="10" >
                 <Label Text="{Binding Hero.Description}" 
                        HorizontalOptions="FillAndExpand" 
                        VerticalOptions="FillAndExpand" 
                        FontSize="13"
-                       TextColor="#FFFFFF"/>
+                       TextColor="Black"/>
             </ContentView>
 
-            <StackLayout Padding="10" Grid.Row="2">
+            <StackLayout Grid.Row="2" 
+                         Padding="10" >
                 <Button Text="Abrir Web" 
-                        TextColor="White" 
+                        TextColor="Black" 
                         Command="{Binding OpenWeb}"/>
             </StackLayout>
 

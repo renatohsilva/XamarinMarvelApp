@@ -9,6 +9,7 @@
                xmlns:fftransformations="clr-namespace:FFImageLoading.Transformations;assembly=FFImageLoading.Transformations"
                xmlns:behavior="clr-namespace:MarvelApp.Behaviors"
                xmlns:components="clr-namespace:MarvelApp.View.Components"
+               xmlns:extension="clr-namespace:Xamarin.Forms.Skeleton;assembly=Xamarin.Forms.Skeleton"
                mc:Ignorable="d"
                AutomationId="PageHeroes"
                x:Class="MarvelApp.View.HeroesView">
@@ -57,10 +58,12 @@
                           HorizontalOptions="FillAndExpand"
                           VerticalOptions="FillAndExpand"
                           CachingStrategy="RecycleElement"
-                          HasUnevenRows="True"
+                          HasUnevenRows="True"                          
+                          ItemsSource="{Binding Characters}"
                           SeparatorColor="{DynamicResource DynamicTextColor}"
                           BackgroundColor="{DynamicResource DynamicBackgroundColor}"
-                          ItemsSource="{Binding Characters}">
+                          extension:Skeleton.IsParent="True"
+                          extension:Skeleton.IsBusy="{Binding IsBusy}">
                     <ListView.Behaviors>
                         <behavior:InfiniteScrollBehaviorListView LoadMoreCommand="{Binding LoadMoreCommand}"
                                                                  IsLoadingMore="{Binding IsLoadingMore}" />

@@ -113,22 +113,24 @@ namespace MarvelApp.ViewModel
 
             SearchCommand = new Command(async () =>
             {
-                using (UserDialogService.Loading("Carregando"))
+                try
                 {
-                    try
-                    {
-                        CurrentPage = DefaultPage();
-                        Characters = await FiltrarPersonagens(CurrentPage, SearchText);
-                    }
-                    catch (SemConexaoException sex)
-                    {
-                        await PopPupDialogService.AlertModalAsync("Atenção", sex.Message);
-                    }
-                    catch (Exception ex)
-                    {
-                        ex.LogException();
-                        await PopPupDialogService.AlertModalAsync("Atenção", ex.Message);
-                    }
+                    IsBusy = true;
+                    CurrentPage = DefaultPage();
+                    Characters = await FiltrarPersonagens(CurrentPage, SearchText);
+                }
+                catch (SemConexaoException sex)
+                {
+                    await PopPupDialogService.AlertModalAsync("Atenção", sex.Message);
+                }
+                catch (Exception ex)
+                {
+                    ex.LogException();
+                    await PopPupDialogService.AlertModalAsync("Atenção", ex.Message);
+                }
+                finally
+                {
+                    IsBusy = false;
                 }
             });
 

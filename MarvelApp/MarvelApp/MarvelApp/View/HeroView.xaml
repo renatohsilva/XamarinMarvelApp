@@ -1,0 +1,73 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<base:BasePage xmlns:base="clr-namespace:MarvelApp.View.Base"
+               xmlns="http://xamarin.com/schemas/2014/forms"
+               xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+               xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+               xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+               xmlns:converter="clr-namespace:MarvelApp.Converter"
+               xmlns:ffimageloading="clr-namespace:FFImageLoading.Forms;assembly=FFImageLoading.Forms"
+               xmlns:components="clr-namespace:MarvelApp.View.Components"
+               mc:Ignorable="d"
+               x:Class="MarvelApp.View.HeroView">
+    <base:BasePage.Resources>
+        <ResourceDictionary>
+            <converter:ImageToStringConverter x:Key="imageConverter" />
+        </ResourceDictionary>
+    </base:BasePage.Resources>
+    <base:BasePage.Content>
+        <Grid BackgroundColor="White"
+              Padding="0"
+              Margin="0">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="*" />
+            </Grid.RowDefinitions>
+
+            <components:Header Grid.Row="0"
+                               Margin="0"
+                               HeaderTitle="{Binding HeaderTitle}"
+                               ShowBackIcon="{Binding ShowBackIcon}" />
+
+            <Grid x:Name="MainGrid"
+                  Grid.Row="1"
+                  BackgroundColor="White"
+                  VerticalOptions="FillAndExpand"
+                  HorizontalOptions="FillAndExpand">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="*" />
+                    <RowDefinition Height="Auto" />
+                </Grid.RowDefinitions>
+
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="Auto" />
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="Auto" />
+                </Grid.ColumnDefinitions>
+
+                <ffimageloading:CachedImage Grid.Row="0"
+                                            Grid.Column="1"
+                                            HorizontalOptions="FillAndExpand"
+                                            VerticalOptions="FillAndExpand"
+                                            Source="{Binding Character.Thumbnail,
+                                                         Converter={StaticResource imageConverter}}" />
+
+                <Label Grid.Row="1"
+                       Grid.Column="1"
+                       Padding="10"
+                       Text="{Binding Character.Description}"
+                       HorizontalOptions="FillAndExpand"
+                       VerticalOptions="FillAndExpand"
+                       Style="{StaticResource CustomLabelStyle}" />
+
+                <Button Grid.Row="2"
+                        Grid.Column="1"
+                        Padding="10"
+                        Text="Abrir Web"
+                        Command="{Binding OpenWebInfoCommand}"
+                        Style="{StaticResource LinkButtonStyle}"
+                        IsEnabled="{Binding IsOpenWebInfoCommandEnable}" />
+            </Grid>
+        </Grid>
+    </base:BasePage.Content>
+</base:BasePage>

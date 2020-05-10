@@ -19,7 +19,7 @@
         </ResourceDictionary>
     </base:BasePage.Resources>
     <base:BasePage.Content>
-        <Grid BackgroundColor="White">
+        <Grid BackgroundColor="{DynamicResource DynamicBackgroundColor}">
             <Grid.RowDefinitions>
                 <RowDefinition Height="Auto" />
                 <RowDefinition Height="*" />
@@ -41,6 +41,8 @@
                
                 <SearchBar Grid.Row="0"
                            Placeholder="Pesquisar"
+                           BackgroundColor="{DynamicResource DynamicTextColor}"
+                           TextColor="{DynamicResource DynamicBackgroundColor}"
                            HeightRequest="50"
                            Text="{Binding SearchText, Mode=TwoWay}"
                            SearchCommand="{Binding SearchCommand}">
@@ -56,6 +58,8 @@
                           VerticalOptions="FillAndExpand"
                           CachingStrategy="RecycleElement"
                           HasUnevenRows="True"
+                          SeparatorColor="{DynamicResource DynamicTextColor}"
+                          BackgroundColor="{DynamicResource DynamicBackgroundColor}"
                           ItemsSource="{Binding Characters}">
                     <ListView.Behaviors>
                         <behavior:InfiniteScrollBehaviorListView LoadMoreCommand="{Binding LoadMoreCommand}"
@@ -67,7 +71,7 @@
                     <ListView.ItemTemplate>
                         <DataTemplate>
                             <ViewCell>
-                                <Frame>
+                                <Frame BackgroundColor="{DynamicResource DynamicBackgroundColor}">
                                     <Grid>
                                         <Grid.ColumnDefinitions>
                                             <ColumnDefinition Width="Auto" />

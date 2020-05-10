@@ -80,6 +80,7 @@ namespace MarvelApp.Setup
                     Exception newEx = new Exception($"Unable to retrieve secret '{name}'", ex);
                     newEx.LogException();
                 }
+                return string.Empty;
             }
         }
     }

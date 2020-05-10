@@ -6,6 +6,7 @@
                xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
                xmlns:controles="clr-namespace:MarvelApp.Controls"
                mc:Ignorable="d"
+               BackgroundColor="{DynamicResource DynamicBackgroundColor}"
                AutomationId="PageInitial"
                x:Class="MarvelApp.View.InitialView">
     <ContentPage.Content>
@@ -22,6 +23,8 @@
 
                     <Grid.RowDefinitions>
                         <RowDefinition Height="Auto" />
+                        <RowDefinition Height="*" />
+                        <RowDefinition Height="*" />
                         <RowDefinition Height="*" />
                         <RowDefinition Height="*" />
                         <RowDefinition Height="*" />
@@ -54,6 +57,7 @@
                         </Grid.ColumnDefinitions>
                         
                         <CheckBox IsChecked="{Binding LembreMe}"
+                                  Color="{DynamicResource DynamicTextColor}"
                                   Grid.Column="0"
                                   HorizontalOptions="FillAndExpand"
                                   VerticalOptions="CenterAndExpand" />
@@ -70,7 +74,6 @@
                                            Grid.Row="2"
                                            Grid.Column="1"
                                            Placeholder="Usuário"
-                                           PlaceholderColor="Black"
                                            FontSize="Small"
                                            HorizontalOptions="FillAndExpand"
                                            VerticalOptions="CenterAndExpand"
@@ -83,7 +86,25 @@
                                             HorizontalOptions="FillAndExpand"
                                             VerticalOptions="CenterAndExpand"
                                             FontSize="Small"
-                                            Style="{StaticResource BlueButtonStyle}" />
+                                            Style="{StaticResource CustomButtonStyle}" />
+
+                    <controles:CustomButton Text="Modo Claro"
+                                            Grid.Row="4"
+                                            Grid.Column="1"
+                                            Command="{Binding ModoClaroCommand}"
+                                            HorizontalOptions="FillAndExpand"
+                                            VerticalOptions="CenterAndExpand"
+                                            FontSize="Small"
+                                            Style="{StaticResource CustomButtonStyle}" />
+
+                    <controles:CustomButton Text="Modo Escuro"
+                                            Grid.Row="5"
+                                            Grid.Column="1"
+                                            Command="{Binding ModoEscuroCommand}"
+                                            HorizontalOptions="FillAndExpand"
+                                            VerticalOptions="CenterAndExpand"
+                                            FontSize="Small"
+                                            Style="{StaticResource CustomButtonStyle}" />
                 </Grid>
                 <Label Grid.Row="1"
                        Margin="0,0,0,10"

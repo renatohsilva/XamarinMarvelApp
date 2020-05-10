@@ -59,6 +59,7 @@ namespace MarvelApp
 
         private async Task InitializeNavigation()
         {
+            ResourcesHelper.SetLightMode();
             bool lembrarMe;
             bool.TryParse(await secureStorageService.GetValue(SecureKey.LembrarMe), out lembrarMe);
 

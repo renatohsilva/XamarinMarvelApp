@@ -10,6 +10,7 @@ using MarvelApp.Model;
 using System.Net.Http;
 using MarvelApp.Exceptions;
 using MarvelApp.Services.Armazenamento.SecureData;
+using MarvelApp.Helpers;
 
 namespace MarvelApp.ViewModel
 {
@@ -17,6 +18,8 @@ namespace MarvelApp.ViewModel
     {
         private string usuario;
         private Command entrarCommand;
+        private Command modoClaroCommand;
+        private Command modoEscuroCommand;
         private bool lembreMe;
 
         public string Usuario
@@ -31,6 +34,18 @@ namespace MarvelApp.ViewModel
             set => SetProperty(ref entrarCommand, value);
         }
 
+        public Command ModoClaroCommand
+        {
+            get => modoClaroCommand;
+            set => SetProperty(ref modoClaroCommand, value);
+        }
+
+        public Command ModoEscuroCommand
+        {
+            get => modoEscuroCommand;
+            set => SetProperty(ref modoEscuroCommand, value);
+        }
+
         public bool LembreMe
         {
             get => lembreMe;
@@ -43,32 +58,47 @@ namespace MarvelApp.ViewModel
             {
                 using (UserDialogService.Loading("Executando"))
                 {
-                    if (await Initialize())
+                    IsBusy = true;
+                    try
                     {
-                        IsBusy = true;
-                        try
+                        if (await Initialize())
                         {
                             await NavigationService.NavigateToAsync<HeroesViewModel>();
                         }
-                        catch (SemConexaoException sex)
-                        {
-                            await PopPupDialogService.AlertModalAsync("Atenção", sex.Message);
-                        }
-                        catch (NotFoundException nex)
-                        {
-                            await PopPupDialogService.AlertModalAsync("Atenção", nex.Message);
-                        }
-                        catch (Exception ex)
-                        {
-                            ex.LogException();
-                            await PopPupDialogService.AlertModalAsync("Atenção", ex.Message);
-                        }
-                        finally
-                        {
-                            IsBusy = false;
-                        }
-                    }                   
+                    }
+                    catch (SemConexaoException sex)
+                    {
+                        await PopPupDialogService.AlertModalAsync("Atenção", sex.Message);
+                    }
+                    catch (NotFoundException nex)
+                    {
+                        await PopPupDialogService.AlertModalAsync("Atenção", nex.Message);
+                    }
+                    catch (Exception ex)
+                    {
+                        ex.LogException();
+                        await PopPupDialogService.AlertModalAsync("Atenção", ex.Message);
+                    }
+                    finally
+                    {
+                        IsBusy = false;
+                    }
+
                 }
+            }, CanExecute());
+
+            ModoClaroCommand = new Command(() =>
+            {
+                IsBusy = true;
+                ResourcesHelper.SetLightMode();
+                IsBusy = false;
+            }, CanExecute());
+
+            ModoEscuroCommand = new Command(() =>
+            {
+                IsBusy = true;
+                ResourcesHelper.SetDarkMode();
+                IsBusy = false;
             }, CanExecute());
         }
 

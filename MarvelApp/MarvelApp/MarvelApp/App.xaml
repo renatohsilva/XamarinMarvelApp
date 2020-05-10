@@ -7,30 +7,30 @@
              mc:Ignorable="d"
              x:Class="MarvelApp.App">
     <Application.Resources>
-        <Color x:Key="ColorDarkGreenMBZ">#506531</Color>
-        <Color x:Key="ColorLightGreenMBZ">#63A91F</Color>
-        <Color x:Key="ColorBlackMBZ">#1E2019</Color>
-        <Color x:Key="ColorBrownMBZ">#4D4729</Color>
-        <Color x:Key="ColorWhiteMBZ">#FFFFFF</Color>
-        <Color x:Key="ColorLightGrayMBZ">#D9DAE3</Color>
-        <Color x:Key="ColorRedMBZ">#F16245</Color>
-        <Color x:Key="ColorBlueMBZ">#092A46</Color>
-        <Color x:Key="ColorDarkBlueMBZ">#314E69</Color>
-        <Color x:Key="ColorLightBlueMBZ">#17B2D4</Color>
-        <Color x:Key="ColorYellowMBZ">#F0AF00</Color>
-        <Color x:Key="ColorGrayMBZ">#707070</Color>
-        <Color x:Key="ColorOrangeMBZ">#ED4E34</Color>
-        <Color x:Key="ColorDarkOrangeMBZ">#E64522</Color>
-        <Color x:Key="ColorLighterBlueGrayMBZ">#8FA0B0</Color>
-        <Color x:Key="ColorLightBlueGrayMBZ">#49657A</Color>
-        <Color x:Key="ColorCinnabarMBZ">#E64522</Color>
-        <Color x:Key="ColorAthensGrayMBZ">#F3F4F6</Color>
-        <Color x:Key="ColorCeruleanMBZ">#17B2D4</Color>
-        <Color x:Key="ColorDeepCeruleanMBZ">#006FB4</Color>
-        <Color x:Key="ColorDefaultGrayMBZ">#868A8B</Color>
-        <Color x:Key="ColorBaliHaiMBZ">#8FA0B0</Color>
-        <Color x:Key="ColorGrayDotsMBZ">#D7DBE2</Color>
-        <Color x:Key="ColorPadraoDeselecionadoMBZ">#e0dfdf</Color>
+        <Color x:Key="ColorDarkGreen">#506531</Color>
+        <Color x:Key="ColorLightGreen">#63A91F</Color>
+        <Color x:Key="ColorBlack">#1E2019</Color>
+        <Color x:Key="ColorBrown">#4D4729</Color>
+        <Color x:Key="ColorWhite">#FFFFFF</Color>
+        <Color x:Key="ColorLightGray">#D9DAE3</Color>
+        <Color x:Key="ColorRed">#F16245</Color>
+        <Color x:Key="ColorBlue">#092A46</Color>
+        <Color x:Key="ColorDarkBlue">#314E69</Color>
+        <Color x:Key="ColorLightBlue">#17B2D4</Color>
+        <Color x:Key="ColorYellow">#F0AF00</Color>
+        <Color x:Key="ColorGray">#707070</Color>
+        <Color x:Key="ColorOrange">#ED4E34</Color>
+        <Color x:Key="ColorDarkOrange">#E64522</Color>
+        <Color x:Key="ColorLighterBlueGray">#8FA0B0</Color>
+        <Color x:Key="ColorLightBlueGray">#49657A</Color>
+        <Color x:Key="ColorCinnabar">#E64522</Color>
+        <Color x:Key="ColorAthensGray">#F3F4F6</Color>
+        <Color x:Key="ColorCerulean">#17B2D4</Color>
+        <Color x:Key="ColorDeepCerulean">#006FB4</Color>
+        <Color x:Key="ColorDefaultGray">#868A8B</Color>
+        <Color x:Key="ColorBaliHai">#8FA0B0</Color>
+        <Color x:Key="ColorGrayDots">#D7DBE2</Color>
+        <Color x:Key="ColorPadraoDeselecionado">#e0dfdf</Color>
 
         <OnPlatform x:Key="FontURobotoBlack"
                     x:TypeArguments="x:String">
@@ -52,10 +52,6 @@
                TargetType="controles:CustomEntry">
             <Setter Property="FontSize"
                     Value="15" />
-            <Setter Property="TextColor"
-                    Value="{StaticResource ColorBlackMBZ}" />
-            <Setter Property="BorderColor"
-                    Value="{StaticResource ColorGrayMBZ}" />
             <Setter Property="CornerRadius"
                     Value="10" />
             <Setter Property="HeightRequest"
@@ -81,7 +77,7 @@
         <Style x:Key="CustomLabelStyle"
                TargetType="Label">
             <Setter Property="TextColor"
-                    Value="{StaticResource ColorBlackMBZ}" />
+                    Value="{DynamicResource DynamicTextColor}" />
             <Setter Property="FontFamily">
                 <OnPlatform x:TypeArguments="x:String">
                     <On Platform="Android"
@@ -95,7 +91,7 @@
         <Style x:Key="CustomLabelLightStyle"
                TargetType="Label">
             <Setter Property="TextColor"
-                    Value="{StaticResource ColorBlackMBZ}" />
+                    Value="{DynamicResource DynamicTextColor}" />
             <Setter Property="FontFamily">
                 <OnPlatform x:TypeArguments="x:String">
                     <On Platform="Android"
@@ -109,7 +105,7 @@
         <Style x:Key="CustomLabelMediumStyle"
                TargetType="Label">
             <Setter Property="TextColor"
-                    Value="{StaticResource ColorBlackMBZ}" />
+                    Value="{DynamicResource DynamicTextColor}" />
             <Setter Property="FontFamily">
                 <OnPlatform x:TypeArguments="x:String">
                     <On Platform="Android"
@@ -123,7 +119,7 @@
         <Style x:Key="CustomLabelBoldStyle"
                TargetType="Label">
             <Setter Property="TextColor"
-                    Value="{StaticResource ColorBlackMBZ}" />
+                    Value="{DynamicResource DynamicTextColor}" />
             <Setter Property="FontFamily">
                 <OnPlatform x:TypeArguments="x:String">
                     <On Platform="Android"
@@ -137,7 +133,7 @@
         <Style x:Key="LinkButtonStyle"
                TargetType="Button">
             <Setter Property="TextColor"
-                    Value="{StaticResource ColorBlueMBZ}" />
+                    Value="{DynamicResource DynamicTextColor}" />
             <Setter Property="BorderColor"
                     Value="Transparent" />
             <Setter Property="BackgroundColor"
@@ -158,50 +154,20 @@
             </Setter>
         </Style>
 
-        <Style x:Key="BlueButtonStyle"
+        <Style x:Key="CustomButtonStyle"
                TargetType="controles:CustomButton">
             <Setter Property="BackgroundColor"
-                    Value="{StaticResource ColorBlueMBZ}" />
+                    Value="{DynamicResource DynamicBackgroundColor}" />
             <Setter Property="TextColor"
-                    Value="{StaticResource ColorWhiteMBZ}" />
+                    Value="{DynamicResource DynamicTextColor}" />
             <Setter Property="BorderColor"
-                    Value="{StaticResource ColorBlueMBZ}" />
+                    Value="{DynamicResource DynamicTextColor}" />
             <Setter Property="AltBackgroundColor"
-                    Value="{StaticResource ColorBlueMBZ}" />
+                    Value="{DynamicResource DynamicBackgroundColor}" />
             <Setter Property="AltTextColor"
-                    Value="{StaticResource ColorWhiteMBZ}" />
+                    Value="{DynamicResource DynamicTextColor}" />
             <Setter Property="AltBorderColor"
-                    Value="{StaticResource ColorBlueMBZ}" />
-            <Setter Property="BorderWidth"
-                    Value="1" />
-            <Setter Property="FontSize"
-                    Value="Medium" />
-            <Setter Property="CornerRadius"
-                    Value="10" />
-            <Setter Property="FontFamily">
-                <OnPlatform x:TypeArguments="x:String">
-                    <On Platform="Android"
-                        Value="Roboto-Black.ttf#Roboto Black" />
-                    <On Platform="iOS"
-                        Value="Roboto-Black" />
-                </OnPlatform>
-            </Setter>
-        </Style>
-
-        <Style x:Key="WhiteButtonStyle"
-               TargetType="controles:CustomButton">
-            <Setter Property="BackgroundColor"
-                    Value="{StaticResource ColorWhiteMBZ}" />
-            <Setter Property="TextColor"
-                    Value="{StaticResource ColorBlueMBZ}" />
-            <Setter Property="BorderColor"
-                    Value="{StaticResource ColorBlueMBZ}" />
-            <Setter Property="AltBackgroundColor"
-                    Value="{StaticResource ColorWhiteMBZ}" />
-            <Setter Property="AltTextColor"
-                    Value="{StaticResource ColorBlueMBZ}" />
-            <Setter Property="AltBorderColor"
-                    Value="{StaticResource ColorBlueMBZ}" />
+                    Value="{DynamicResource DynamicTextColor}" />
             <Setter Property="BorderWidth"
                     Value="1" />
             <Setter Property="FontSize"

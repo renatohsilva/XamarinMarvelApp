@@ -18,9 +18,10 @@
     <StackLayout VerticalOptions="Center" 
                  HorizontalOptions="FillAndExpand" 
                  Padding="40, 20, 40, 20">
-            <Frame CornerRadius="10"  
-                   BackgroundColor="White"
-                   Padding="0">
+            <Frame CornerRadius="10"
+                   BackgroundColor="{DynamicResource DynamicBackgroundColor}"
+                   BorderColor="{DynamicResource DynamicTextColor}"
+	               Padding="0">
             <StackLayout Padding="0, 10, 0, 20">
                 <Grid RowSpacing="10">
                     <Grid.RowDefinitions>
@@ -41,7 +42,6 @@
                            Text="{Binding Titulo}"
                            FontSize="Large"
                            Style="{StaticResource CustomLabelBoldStyle}"
-                           TextColor="{StaticResource ColorBlueMBZ}"
                            HorizontalOptions="Center"
                            VerticalOptions="Center"
                            VerticalTextAlignment="Center"
@@ -51,7 +51,6 @@
                            Grid.Column="1"
                            Text="{Binding Mensagem}"
                            FontSize="Medium"
-                           TextColor="{StaticResource ColorBlueMBZ}"
                            HorizontalOptions="Center"
                            Style="{StaticResource CustomLabelStyle}"
                            XAlign="Center" />
@@ -63,7 +62,7 @@
                                             Text="{Binding TextoBotao}" 
                                             VerticalOptions="Start"
                                             HorizontalOptions="FillAndExpand"
-                                            Style="{StaticResource WhiteButtonStyle}" />
+                                            Style="{StaticResource CustomButtonStyle}" />
                 </Grid>
             </StackLayout>
         </Frame>

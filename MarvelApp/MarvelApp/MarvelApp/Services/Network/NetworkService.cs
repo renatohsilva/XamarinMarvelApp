@@ -37,8 +37,6 @@ namespace MarvelApp.Services.Network
             return await WaitAndRetryInner(func, sleepDurationProvider, retryCount, onRetryAsync);
         }
 
-        #region Inner Methods
-
         internal async Task<T> RetryInner<T>(Func<Task<T>> func, int retryCount = 1, Func<Exception, int, Task> onRetry = null)
         {
             var onRetryInner = new Func<Exception, int, Task>((e, i) =>
@@ -65,7 +63,7 @@ namespace MarvelApp.Services.Network
                 return Task.Factory.StartNew(() =>
                 {
 #if DEBUG
-                    System.Diagnostics.Debug.WriteLine($"Retrying in {t.ToString("g")} due to exception '{(e.InnerException ?? e).Message}'");
+                    System.Diagnostics.Debug.WriteLine($"Retrying in {t:g} due to exception '{(e.InnerException ?? e).Message}'");
 #endif
                 });
             });
@@ -76,6 +74,5 @@ namespace MarvelApp.Services.Network
                 .WaitAndRetryAsync(retryCount, sleepDurationProvider, onRetryAsync ?? onRetryInner)
                 .ExecuteAsync(func);
         }
-        #endregion
     }
 }

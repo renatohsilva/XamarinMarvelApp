@@ -1,4 +1,6 @@
-﻿using Newtonsoft.Json.Linq;
+﻿using MarvelApp.Model;
+using Newtonsoft.Json.Linq;
+using System;
 using System.Diagnostics;
 using System.IO;
 using System.Reflection;
@@ -27,9 +29,10 @@ namespace MarvelApp.Setup
                     secrets = JObject.Parse(json);
                 }
             }
-            catch
+            catch (Exception ex)
             {
-                Debug.WriteLine("Unable to load secrets file");
+                Exception newEx = new Exception("Unable to load secrets file", ex);
+                newEx.LogException();
             }
         }
 
@@ -72,10 +75,10 @@ namespace MarvelApp.Setup
 
                     return node.ToString();
                 }
-                catch
+                catch (Exception ex)
                 {
-                    Debug.WriteLine($"Unable to retrieve secret '{name}'");
-                    return string.Empty;
+                    Exception newEx = new Exception($"Unable to retrieve secret '{name}'", ex);
+                    newEx.LogException();
                 }
             }
         }

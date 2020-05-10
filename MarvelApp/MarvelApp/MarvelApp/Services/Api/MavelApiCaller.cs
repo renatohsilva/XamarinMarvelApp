@@ -49,30 +49,5 @@ namespace MarvelApp.Business.Api
                 throw new Exception("Não foi possível consultar o personagem.", ex);
             }
         }
-
-        private async Task<ApiDataContainer<Character>> MakeHttpCall(string url)
-        {
-            HttpClient client = new HttpClient();
-            HttpResponseMessage response = new HttpResponseMessage();
-            try
-            {
-                response = await client.GetAsync(url);
-
-                string responseText = await response.Content.ReadAsStringAsync();
-                if (response.IsSuccessStatusCode)
-                {
-                    return JsonConvert.DeserializeObject<ApiDataContainer<Character>>(responseText);
-                }
-                else
-                {
-                    throw new Exception(string.Format("Response Statuscode for {0}: {1}", url, response.StatusCode));
-                }
-            }
-            catch (Exception ex)
-            {
-                Debug.WriteLine(ex.Message);
-                throw ex;
-            }
-        }
     }
 }

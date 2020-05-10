@@ -11,12 +11,7 @@ namespace MarvelApp.ViewModel.Base
         {
             BackCommand = new Command(async () =>
             {
-                using (UserDialogService.Loading("Executando"))
-                {
-                    IsBusy = true;
-                    await NavigationService.NavigateTabbedPagePopAsync();
-                    IsBusy = false;
-                }
+                await NavigationService.NavigateTabbedPagePopAsync();
             });
         }
     }

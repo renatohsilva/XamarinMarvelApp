@@ -14,22 +14,11 @@ namespace MarvelApp.Helpers
             ThreadHelper.uiContext = uiContext;
         }
 
-        /// <summary>
-        /// Determines if the current synchronization context is the UI Thread
-        /// </summary>
-        /// <param name="context">SynchronizationContext you want to compare with the UIThread SynchronizationContext</param>
-        /// <returns>true or false</returns>
         public static bool IsOnUIThread(SynchronizationContext context)
         {
             return context == uiContext;
         }
 
-        /// <summary>
-        /// Will run the Func on the UIThread asynchronously.
-        /// PERFORMANCE: Do not use in a loop. Context switching can cause significant performance degradation. Call this as infrequently as possible.
-        /// </summary>
-        /// <param name="action"></param>
-        /// <returns></returns>
         public static async Task RunOnUIThreadAsync(Func<Task> action)
         {
             if (uiContext == null)
@@ -47,11 +36,6 @@ namespace MarvelApp.Helpers
             }
         }
 
-        /// <summary>
-        /// Will run the Action on the UI Thread.
-        /// PERFORMANCE: Do not use in a loop. Context switching can cause significant performance degradation. Call this as infrequently as possible.
-        /// </summary>
-        /// <param name="action"></param>
         public static void RunOnUIThread(Action action)
         {
             if (uiContext == null)
@@ -65,15 +49,10 @@ namespace MarvelApp.Helpers
             }
             else
             {
-                RunOnUIThreadHelper(action).Wait(); // I can wait because I am not on the same thread.
+                RunOnUIThreadHelper(action).Wait(); 
             }
         }
 
-        /// <summary>
-        /// Will run the Func on the UI Thread.
-        /// PERFORMANCE: Do not use in a loop. Context switching can cause significant performance degradation. Call this as infrequently as possible.
-        /// </summary>
-        /// <param name="action"></param>
         public static void RunOnUIThread(Func<Task> action)
         {
             if (uiContext == null)
@@ -87,7 +66,7 @@ namespace MarvelApp.Helpers
             }
             else
             {
-                RunOnUIThreadHelper(action).Wait(); // I can wait because I am not on the same thread.
+                RunOnUIThreadHelper(action).Wait();
             }
         }
 
@@ -204,7 +183,7 @@ namespace MarvelApp.Helpers
                     if (task != null)
                     {
                         task.Item1(task.Item2);
-                        if (InnerException != null) // the method threw an exeption
+                        if (InnerException != null)
                         {
                             throw new AggregateException("ThreadHelper.Run method threw an exception.", InnerException);
                         }

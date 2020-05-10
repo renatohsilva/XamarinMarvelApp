@@ -68,33 +68,16 @@ namespace MarvelApp.Services.Navigation
             await InternalNavigatePopAsync(modal);
         }
 
-        /// <summary>
-        /// Navegação dentro de uma tabbed page que é atual page
-        /// </summary>
-        /// <typeparam name="TViewModel">Tipo da ViewModel da Página que será carregada</typeparam>
-        /// <param name="parameters">parametros para a view</param>
-        /// <returns></returns>
         public async Task NavigateTabbedPageToAsync<TViewModel>(NavigationParameters parameters = null) where TViewModel : BaseViewModel
         {
             await InternalNavigateTabbedPageToAsync(typeof(TViewModel), parameters);
         }
 
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <typeparam name="TViewModel">Tipo da ViewModel da Página que será carregada</typeparam>
-        /// <param name="indexPage">Indice da Tabbed Page a qual a nova página será inserida</param>
-        /// <param name="parameters">parametros para a view</param>
-        /// <returns></returns>
         public async Task ReplaceNewChildTabbedPageToAsync<TViewModel>(int indexPage = 0, NavigationParameters parameters = null) where TViewModel : BaseViewModel
         {
             await InternalReplaceNewChildTabbedPageToAsync(indexPage, typeof(TViewModel), parameters);
         }
 
-        /// <summary>
-        /// Navegação dentro de uma tabbed page que é atual page
-        /// </summary>
-        /// <returns></returns>
         public async Task NavigateTabbedPagePopAsync()
         {
             await InternalNavigatetabbedPagePopAsync();

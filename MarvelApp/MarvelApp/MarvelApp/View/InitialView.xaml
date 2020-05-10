@@ -6,6 +6,7 @@
                xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
                xmlns:controles="clr-namespace:MarvelApp.Controls"
                mc:Ignorable="d"
+               AutomationId="PageInitial"
                x:Class="MarvelApp.View.InitialView">
     <ContentPage.Content>
         <ScrollView>

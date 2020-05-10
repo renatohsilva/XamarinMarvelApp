@@ -18,13 +18,9 @@ namespace MarvelApp.iOS.Services
         {
         }
 
-        #region IOpenWebService implementation
-
         public void OpenUrl(string url)
         {
             UIApplication.SharedApplication.OpenUrl(new NSUrl(url));
         }
-
-        #endregion
     }
 }

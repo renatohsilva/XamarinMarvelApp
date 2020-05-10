@@ -85,10 +85,7 @@ namespace MarvelApp.Droid.Renders
                     var typeface = Typeface.CreateFromAsset(AApplication.Context.Assets, FontNameToFontFile(fontFamily));
                     return typeface;
                 }
-                else
-                {
-                    return Typeface.Create(fontFamily, TypefaceStyle.Normal);
-                }
+                return Typeface.Create(fontFamily, TypefaceStyle.Normal);
             }
 
             return Typeface.Create(Typeface.Default, TypefaceStyle.Normal);
